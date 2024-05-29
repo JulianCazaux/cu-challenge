@@ -1,0 +1,14 @@
+services:
+  postgres:
+    container_name: cookunity-postgres-db
+    image: postgres:13.5
+    restart: always
+    environment:
+      - POSTGRES_USER=cookunity
+      - POSTGRES_PASSWORD=CookUnityPass
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+volumes:
+  postgres:
