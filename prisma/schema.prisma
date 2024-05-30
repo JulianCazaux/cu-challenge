@@ -1,0 +1,54 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TypeEnum {
+  FIRE
+  WATER
+  GRASS
+  ELECTRIC
+  PSYCHIC
+  FIGHTING
+  COLORLESS
+  METAL
+  DARK
+  DRAGON
+  FAIRY
+}
+
+enum EvolutionEnum {
+  BASIC
+  STAGE1
+  STAGE2
+}
+
+enum RarityEnum {
+  COMMON
+  UNCOMMON
+  RARE
+}
+
+model Card {
+  id              Int      @id @default(autoincrement())
+  name            String
+  pokemonType     TypeEnum
+  evolutionType   EvolutionEnum
+  attacks         Json // [{attackName: String, damageAmount: Int}]
+  hitPoints       Int
+  weakness        Json // {pokemonType: TypeEnum, times: Int}
+  resistance      Json? // {pokemonType: TypeEnum, value: Int}
+  rarity          RarityEnum
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
