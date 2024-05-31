@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateCardDto } from './dto/create-card.dto';
 import { UpdateCardDto } from './dto/update-card.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { $Enums } from '@prisma/client';
 
 @Injectable()
 export class CardService {
@@ -25,5 +26,9 @@ export class CardService {
 
   async remove(id: number) {
     return this.prisma.card.delete({ where: { id } });
+  }
+
+  async findAllByType(type: $Enums.TypeEnum) {
+    return this.prisma.card.findMany({ where: { pokemonType: type } });
   }
 }
