@@ -6,7 +6,6 @@ import {
   IsEnum,
 } from '@nestjs/class-validator';
 import { $Enums } from '@prisma/client';
-import { JsonValue } from '@prisma/client/runtime/library';
 
 export class CreateCardDto {
   @IsString()
@@ -18,18 +17,18 @@ export class CreateCardDto {
   @IsEnum($Enums.EvolutionEnum)
   evolutionType: $Enums.EvolutionEnum;
 
-  @IsObject({ each: true })
-  attacks: JsonValue[];
+  @IsObject()
+  attack: PrismaJson.AttackType;
 
   @IsNumber()
   hitPoints: number;
 
   @IsObject()
-  weakness: JsonValue;
+  weakness: PrismaJson.WeaknessType;
 
   @IsOptional()
   @IsObject()
-  resistance: JsonValue;
+  resistance: PrismaJson.ResistanceType;
 
   @IsEnum($Enums.RarityEnum)
   rarity: $Enums.RarityEnum;

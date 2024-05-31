@@ -8,6 +8,10 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator json {
+  provider = "prisma-json-types-generator"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -44,10 +48,18 @@ model Card {
   name            String
   pokemonType     TypeEnum
   evolutionType   EvolutionEnum
-  attacks         Json // [{attackName: String, damageAmount: Int}]
+
+  /// [AttackType]
+  attack         Json
+
   hitPoints       Int
-  weakness        Json // {pokemonType: TypeEnum, times: Int}
-  resistance      Json? // {pokemonType: TypeEnum, value: Int}
+  
+  /// [WeaknessType]
+  weakness        Json
+  
+  /// [ResistanceType]
+  resistance      Json?
+  
   rarity          RarityEnum
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
