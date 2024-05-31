@@ -7,23 +7,23 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class CardService {
   constructor(private readonly prisma: PrismaService) {}
 
-  create(createCardDto: CreateCardDto) {
-    return 'This action adds a new card';
+  async create(createCardDto: CreateCardDto) {
+    return this.prisma.card.create({ data: createCardDto });
   }
 
   async findAll() {
     return this.prisma.card.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} card`;
+  async findOne(id: number) {
+    return this.prisma.card.findUnique({ where: { id } });
   }
 
-  update(id: number, updateCardDto: UpdateCardDto) {
-    return `This action updates a #${id} card`;
+  async update(id: number, updateCardDto: UpdateCardDto) {
+    return this.prisma.card.update({ where: { id }, data: updateCardDto });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} card`;
+  async remove(id: number) {
+    return this.prisma.card.delete({ where: { id } });
   }
 }
