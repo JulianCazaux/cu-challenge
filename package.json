@@ -1,8 +1,8 @@
 {
-  "name": "backend",
+  "name": "cu-backend",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Engineer Coding Challenge",
+  "author": "Julian Cazaux",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
