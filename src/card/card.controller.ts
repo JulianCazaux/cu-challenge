@@ -11,6 +11,7 @@ import {
 import { CardService } from './card.service';
 import { CreateCardDto } from './dto/create-card.dto';
 import { UpdateCardDto } from './dto/update-card.dto';
+import { PaginateFilterCardsDto } from './dto/paginate-filter-cards.dto';
 
 @Controller('card')
 export class CardController {
@@ -22,8 +23,9 @@ export class CardController {
   }
 
   @Get()
-  async findAll() {
-    return await this.cardService.findAll();
+  async findAll(@Query() query: PaginateFilterCardsDto) {
+    const { limit = 10, offset = 0, name, type } = query;
+    return await this.cardService.findAll(+offset, +limit, name, type);
   }
 
   @Get(':id')

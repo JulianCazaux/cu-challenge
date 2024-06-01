@@ -12,8 +12,27 @@ export class CardService {
     return this.prisma.card.create({ data: createCardDto });
   }
 
-  async findAll() {
-    return this.prisma.card.findMany();
+  async findAll(
+    offset?: number,
+    limit?: number,
+    name?: string,
+    type?: $Enums.TypeEnum,
+  ) {
+    const [count, items] = await this.prisma.$transaction([
+      this.prisma.card.count(),
+      this.prisma.card.findMany({
+        take: limit,
+        skip: offset,
+        ...((name || type) && {
+          where: { ...(name && { name }), ...(type && { pokemonType: type }) },
+        }),
+      }),
+    ]);
+
+    return {
+      count,
+      items,
+    };
   }
 
   async findOne(id: number) {
