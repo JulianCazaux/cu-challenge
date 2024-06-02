@@ -8,45 +8,45 @@ import {
   Delete,
   Query,
 } from '@nestjs/common';
-import { CardService } from './card.service';
+import { CardsService } from './cards.service';
 import { CreateCardDto } from './dto/create-card.dto';
 import { UpdateCardDto } from './dto/update-card.dto';
 import { PaginateFilterCardsDto } from './dto/paginate-filter-cards.dto';
 
 @Controller('card')
-export class CardController {
-  constructor(private readonly cardService: CardService) {}
+export class CardsController {
+  constructor(private readonly cardsService: CardsService) {}
 
   @Post()
   async create(@Body() createCardDto: CreateCardDto) {
-    return await this.cardService.create(createCardDto);
+    return await this.cardsService.create(createCardDto);
   }
 
   @Get()
   async findAll(@Query() query: PaginateFilterCardsDto) {
     const { limit = 10, offset = 0, name, type } = query;
-    return await this.cardService.findAll(+offset, +limit, name, type);
+    return await this.cardsService.findAll(+offset, +limit, name, type);
   }
 
   @Get(':id')
   async findOne(@Param('id') id: string) {
-    return await this.cardService.findOne(+id);
+    return await this.cardsService.findOne(+id);
   }
 
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateCardDto: UpdateCardDto) {
-    return await this.cardService.update(+id, updateCardDto);
+    return await this.cardsService.update(+id, updateCardDto);
   }
 
   @Delete(':id')
   async remove(@Param('id') id: string) {
-    return await this.cardService.remove(+id);
+    return await this.cardsService.remove(+id);
   }
 
   @Get('battle/:id')
   async battle(@Param('id') id: string, @Query('opponent') opponent: string) {
-    const myCard = await this.cardService.findOne(+id);
-    const opponentCard = await this.cardService.findOne(+opponent);
+    const myCard = await this.cardsService.findOne(+id);
+    const opponentCard = await this.cardsService.findOne(+opponent);
 
     let damageAmount = myCard.attack.damageAmount;
 
@@ -69,15 +69,15 @@ export class CardController {
 
   @Get('comparison/:id')
   async comparison(@Param('id') id: string) {
-    const card = await this.cardService.findOne(+id);
+    const card = await this.cardsService.findOne(+id);
 
     if (card !== null) {
       const weakness = card.weakness
-        ? await this.cardService.findAllByType(card.weakness.type)
+        ? await this.cardsService.findAllByType(card.weakness.type)
         : [];
 
       const resistance = card.resistance
-        ? await this.cardService.findAllByType(card.resistance.type)
+        ? await this.cardsService.findAllByType(card.resistance.type)
         : [];
 
       return { weakness, resistance };

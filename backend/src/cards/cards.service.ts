@@ -5,7 +5,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { $Enums } from '@prisma/client';
 
 @Injectable()
-export class CardService {
+export class CardsService {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(createCardDto: CreateCardDto) {
