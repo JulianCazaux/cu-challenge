@@ -10,8 +10,9 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 
 import Image from 'next/image';
+import { CardType } from '@/types/common';
 
-export default function PokemonCard({ card }) {
+export default function PokemonCard({ card }: { card: CardType }) {
   return (
     <Card key={card.id} className="self-stretch">
       <CardHeader>
@@ -28,6 +29,7 @@ export default function PokemonCard({ card }) {
           alt={card.name}
           width={300}
           height={300}
+          className="w-full h-auto"
         ></Image>
         <div className="flex flex-col pt-7">
           <Badge className="w-full flex justify-between" variant={'secondary'}>

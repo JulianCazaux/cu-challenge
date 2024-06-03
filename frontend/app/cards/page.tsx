@@ -9,23 +9,7 @@ import {
 } from '@/types/common';
 
 import PokemonCard from '@/components/pokemon-card';
-
-type CardType = {
-  id: number;
-  name: string;
-  pokemonType: TypeEnum;
-  evolutionType: EvolutionEnum;
-  attack: AttackType;
-  hitPoints: number;
-  weakness: WeaknessType;
-  resistance: ResistanceType;
-  rarity: RarityEnum;
-};
-
-type FindAllResponseType<T> = {
-  count: number;
-  items: T[];
-};
+import { type CardType, type FindAllResponseType } from '@/types/common';
 
 export default async function Cards() {
   const data: FindAllResponseType<CardType> = await axios
@@ -38,7 +22,9 @@ export default async function Cards() {
       <div className="p-10">filters</div>
       <div className="flex items-start flex-wrap gap-2">
         {data &&
-          data.items.map((card) => <PokemonCard card={card}></PokemonCard>)}
+          data.items.map((card) => (
+            <PokemonCard card={card} key={card.id}></PokemonCard>
+          ))}
       </div>
     </main>
   );

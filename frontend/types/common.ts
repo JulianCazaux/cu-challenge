@@ -1,3 +1,20 @@
+export type CardType = {
+  id: number;
+  name: string;
+  pokemonType: TypeEnum;
+  evolutionType: EvolutionEnum;
+  attack: AttackType;
+  hitPoints: number;
+  weakness: WeaknessType;
+  resistance: ResistanceType;
+  rarity: RarityEnum;
+};
+
+export type FindAllResponseType<T> = {
+  count: number;
+  items: T[];
+};
+
 export enum TypeEnum {
   FIRE,
   WATER,
