@@ -17,8 +17,8 @@ export default async function Cards() {
     .then((res) => res.data);
 
   return (
-    <main className=" min-h-screen p-24">
-      <h1 className="text-3xl font-bold">Pokemon App</h1>
+    <main className="min-h-screen px-24 py-3">
+      <h1 className="text-5xl font-bold">Pokemon App</h1>
       <div className="p-10">filters</div>
       <div className="flex items-start flex-wrap gap-2">
         {data &&

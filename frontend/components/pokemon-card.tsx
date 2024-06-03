@@ -32,6 +32,7 @@ export default function PokemonCard({ card }: { card: CardType }) {
           height={300}
           className="w-full h-auto"
         ></Image>
+
         <div className="flex flex-col pt-7">
           <Badge
             className="w-full flex justify-between h-8"
