@@ -55,7 +55,7 @@ async function main() {
 
   await prisma.card.create({
     data: {
-      name: 'Sneazel',
+      name: 'Sneasel',
       pokemonType: 'DARK',
       evolutionType: 'BASIC',
       attack: { name: 'Dig Claws', damageAmount: 20 },
