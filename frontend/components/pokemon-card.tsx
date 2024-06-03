@@ -16,12 +16,13 @@ export default function PokemonCard({ card }: { card: CardType }) {
   return (
     <Card key={card.id} className="self-stretch">
       <CardHeader>
-        <CardTitle>{card.name}</CardTitle>
-        <CardDescription className="flex justify-between">
+        <CardTitle className="flex justify-between content-center">
+          <span className="text-3xl">{card.name}</span>
           <span>
-            HP <span className="text-2xl">{card.hitPoints}</span>
+            <small>HP</small> <span className="text-3xl">{card.hitPoints}</span>
           </span>
-        </CardDescription>
+        </CardTitle>
+        <CardDescription className="flex justify-between"></CardDescription>
       </CardHeader>
       <CardContent>
         <Image
@@ -32,21 +33,22 @@ export default function PokemonCard({ card }: { card: CardType }) {
           className="w-full h-auto"
         ></Image>
         <div className="flex flex-col pt-7">
-          <Badge className="w-full flex justify-between" variant={'secondary'}>
+          <Badge
+            className="w-full flex justify-between h-8"
+            variant={'secondary'}
+          >
             TYPE
             <span className="font-bold text-justify">{card.pokemonType}</span>
           </Badge>
           <Badge
-            className="w-full flex justify-between mt-2"
+            className="w-full flex justify-between mt-2 pr-2"
             variant={'secondary'}
           >
-            <span className="text-2xl">{card.attack.name}</span>
-            <span className="text-2xl font-bold text-justify">
-              {card.attack.damageAmount}
-            </span>
+            <span className="">{card.attack.name.toUpperCase()}</span>
+            <Badge variant={'destructive'}>{card.attack.damageAmount}</Badge>
           </Badge>
           <Badge
-            className="w-full flex justify-between mt-2"
+            className="w-full flex justify-between mt-2 h-8"
             variant={'secondary'}
           >
             {`WEAKNESS`}
@@ -54,22 +56,22 @@ export default function PokemonCard({ card }: { card: CardType }) {
               {card.weakness.type} x {card.weakness.times}
             </span>
           </Badge>
-          {card.resistance && (
-            <Badge
-              className="w-full flex justify-between mt-2"
-              variant={'secondary'}
-            >
-              {`RESISTANCE`}
+          <Badge
+            className="w-full flex justify-between mt-2 h-8"
+            variant={'secondary'}
+          >
+            {`RESISTANCE`}
+            {card.resistance && (
               <span className="font-bold text-justify">
                 {card.resistance.type} x {card.resistance.value}
               </span>
-            </Badge>
-          )}
+            )}
+          </Badge>
         </div>
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Button variant="outline">View</Button>
         <p className="text-xs">{card.rarity}</p>
+        <Button variant="default">View</Button>
       </CardFooter>
     </Card>
   );
