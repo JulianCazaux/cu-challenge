@@ -11,10 +11,11 @@ import { Button } from '@/components/ui/button';
 
 import Image from 'next/image';
 import { CardType } from '@/types/common';
+import Link from 'next/link';
 
 export default function PokemonCard({ card }: { card: CardType }) {
   return (
-    <Card key={card.id} className="self-stretch">
+    <Card key={card.id} className="self-stretch w-[400px]">
       <CardHeader>
         <CardTitle className="flex justify-between content-center">
           <span className="text-3xl">{card.name}</span>
@@ -72,7 +73,9 @@ export default function PokemonCard({ card }: { card: CardType }) {
       </CardContent>
       <CardFooter className="flex justify-between">
         <p className="text-xs">{card.rarity}</p>
-        <Button variant="default">View</Button>
+        <Button asChild variant={'default'}>
+          <Link href={`/cards/${card.id}`}>Fight</Link>
+        </Button>
       </CardFooter>
     </Card>
   );

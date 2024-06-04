@@ -1,4 +1,3 @@
-import { type CardType, type FindAllResponseType } from '@/types/common';
 import PokemonFilter from '@/components/pokemon-filter';
 import PokemonGrid from '@/components/pokemon-grid';
 import { Suspense } from 'react';
