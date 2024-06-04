@@ -19,7 +19,9 @@ export class CardsService {
     type?: $Enums.TypeEnum,
   ) {
     const [count, items] = await this.prisma.$transaction([
-      this.prisma.card.count(),
+      this.prisma.card.count({
+        where: { ...(name && { name }), ...(type && { type }) },
+      }),
       this.prisma.card.findMany({
         take: limit,
         skip: offset,
