@@ -1,31 +1,35 @@
-import axios from 'axios';
-import {
-  type TypeEnum,
-  type EvolutionEnum,
-  type RarityEnum,
-  type AttackType,
-  type WeaknessType,
-  type ResistanceType,
-} from '@/types/common';
-
-import PokemonCard from '@/components/pokemon-card';
 import { type CardType, type FindAllResponseType } from '@/types/common';
+import PokemonFilter from '@/components/pokemon-filter';
+import PokemonGrid from '@/components/pokemon-grid';
+import { Suspense } from 'react';
 
-export default async function Cards() {
-  const data: FindAllResponseType<CardType> = await axios
-    .get((process.env.NEXT_PUBLIC_BACKEND_URL as string) + '/cards')
-    .then((res) => res.data);
+export default async function Cards({
+  searchParams,
+}: {
+  searchParams?: {
+    offset?: string;
+    limit?: string;
+    name?: string;
+    type?: string;
+  };
+}) {
+  const nameQuery = searchParams?.name || '';
+  const typeQuery = searchParams?.type || '';
+  const limitQuery = searchParams?.limit || '';
+  const offsetQuery = searchParams?.offset || '';
 
   return (
     <main className="min-h-screen px-24 py-3">
       <h1 className="text-5xl font-bold">Pokemon App</h1>
-      <div className="p-10">filters</div>
-      <div className="flex items-start flex-wrap gap-2">
-        {data &&
-          data.items.map((card) => (
-            <PokemonCard card={card} key={card.id}></PokemonCard>
-          ))}
-      </div>
+      <PokemonFilter />
+      <Suspense key={nameQuery + typeQuery}>
+        <PokemonGrid
+          nameQuery={nameQuery}
+          typeQuery={typeQuery}
+          limitQuery={limitQuery}
+          offsetQuery={offsetQuery}
+        />
+      </Suspense>
     </main>
   );
 }

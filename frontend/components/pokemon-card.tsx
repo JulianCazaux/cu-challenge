@@ -64,7 +64,7 @@ export default function PokemonCard({ card }: { card: CardType }) {
             {`RESISTANCE`}
             {card.resistance && (
               <span className="font-bold text-justify">
-                {card.resistance.type} x {card.resistance.value}
+                {card.resistance.type} -{card.resistance.value}
               </span>
             )}
           </Badge>
