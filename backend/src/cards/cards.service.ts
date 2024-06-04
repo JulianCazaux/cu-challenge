@@ -20,13 +20,21 @@ export class CardsService {
   ) {
     const [count, items] = await this.prisma.$transaction([
       this.prisma.card.count({
-        where: { ...(name && { name }), ...(type && { type }) },
+        where: {
+          ...(name && {
+            name: { equals: `${name}%`, mode: 'insensitive' },
+          }),
+          ...(type && { type }),
+        },
       }),
       this.prisma.card.findMany({
         take: limit,
         skip: offset,
         ...((name || type) && {
-          where: { ...(name && { name }), ...(type && { pokemonType: type }) },
+          where: {
+            ...(name && { name: { equals: `${name}%`, mode: 'insensitive' } }),
+            ...(type && { pokemonType: type }),
+          },
         }),
       }),
     ]);
