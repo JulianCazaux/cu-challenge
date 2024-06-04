@@ -54,7 +54,6 @@ export default function PokemonFilter() {
 
   function handlePageSizeSelectChange(pageSize: string) {
     const params = new URLSearchParams(searchParams);
-    console.log(pageSize);
 
     params.set('limit', pageSize);
     params.set('offset', '0');
@@ -62,7 +61,7 @@ export default function PokemonFilter() {
   }
 
   return (
-    <div className="py-10 flex justify-start gap-4">
+    <div className="pt-10 pb-5 flex justify-start gap-4">
       <Input
         name="searchByName"
         placeholder="Search by name"

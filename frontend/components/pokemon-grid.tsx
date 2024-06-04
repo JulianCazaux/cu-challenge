@@ -1,6 +1,7 @@
 import { CardType, FindAllResponseType } from '@/types/common';
 import PokemonCard from './pokemon-card';
 import axios from 'axios';
+import PagesNav from './pages-nav';
 
 export default async function PokemonGrid({
   nameQuery,
@@ -24,12 +25,19 @@ export default async function PokemonGrid({
     })
     .then((res) => res.data);
 
+  if (getAllResults.items.length === 0) return <h1>No results ...</h1>;
+
   return (
-    <div className="flex items-start flex-wrap gap-2">
-      {getAllResults &&
-        getAllResults.items.map((card) => (
-          <PokemonCard card={card} key={card.id}></PokemonCard>
-        ))}
-    </div>
+    <>
+      <div className="pb-5">
+        <PagesNav totalCount={getAllResults.count} />
+      </div>
+      <div className="flex items-start flex-wrap gap-2">
+        {getAllResults &&
+          getAllResults.items.map((card) => (
+            <PokemonCard card={card} key={card.id}></PokemonCard>
+          ))}
+      </div>
+    </>
   );
 }
