@@ -9,4 +9,6 @@
 - [For Backend](https://github.com/JulianCazaux/cu-challenge/tree/main/backend)
 - [For Frontend](https://github.com/JulianCazaux/cu-challenge/tree/main/frontend)
 
+## Running Example
 
+![Running Example](running-demo.gif)
