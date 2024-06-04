@@ -38,7 +38,14 @@ export default function PokemonBattle({
   useEffect(() => {
     axios
       .get((process.env.NEXT_PUBLIC_BACKEND_URL as string) + '/cards')
-      .then((res) => setPokemonList(res.data));
+      .then((res) =>
+        setPokemonList({
+          ...res.data,
+          items: res.data.items.filter(
+            (el: CardType) => String(el.id) !== pokemonId,
+          ),
+        }),
+      );
   }, []);
 
   useEffect(() => {
