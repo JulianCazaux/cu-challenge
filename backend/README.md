@@ -31,6 +31,11 @@ $ npm run start:prod
 docker-compose up --build
 ```
 
+## Missing
+
+- Authentication
+- Some Unit Testing
+
 ## Demo
 
 Deployed PostgreSQL using AWS RDS. But could not finish deployment to AWS Lambda (and API Gateway) because of an error loading "Prisma Client" which I will continue trying to solve.
@@ -63,7 +68,7 @@ Or if running locally: [http://localhost:3000/api](http://localhost:3000/api)
 
 ## Test
 
-Some Unit test where written for card.controller, for the following endpoints:
+Wrote some Unit Tests for card.controller for the following endpoints:
 
 - create (POST)
 - findOne (GET)
