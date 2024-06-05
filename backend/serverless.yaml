@@ -1,0 +1,42 @@
+org: mrjulius
+service: cookunity-api
+
+useDotenv: true
+
+plugins:
+  - serverless-jetpack
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  environment:
+    DATABASE_URL: ${env:DATABASE_URL}
+  region: sa-east-1
+  stage: production
+  memorySize: 2048
+  logRetentionInDays: 1
+  timeout: 15
+
+# package:
+#   patterns:
+#     #- 'src/generated/prisma-client/**'
+#     #- '!src/generated/prisma-client/libquery_engine-*'
+#     #- 'src/generated/prisma-client/libquery_engine-rhel-*'
+#     - '!node_modules/.prisma/client/libquery_engine-*'
+#     - 'node_modules/.prisma/client/libquery_engine-rhel-*'
+#     - '!node_modules/prisma/libquery_engine-*'
+#     - '!node_modules/@prisma/engines/**'
+
+custom:
+  jetpack:
+    include:
+      - 'node_modules/.prisma/client/**'
+
+functions:
+  api:
+    handler: dist/serverless.handler
+    events:
+      - http:
+          method: any
+          path: /{proxy+}
