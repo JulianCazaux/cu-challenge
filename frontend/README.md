@@ -2,19 +2,22 @@ Frontend App developed with NextJS and Typescript.
 
 ## Getting Started
 
-First, run the development server:
+First step is to rename ".env.example" to ".env" file in order to set the API connection URL.
+
+Then:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Install required packages
+npm install
+
+# Build
+npm run build
+
+# Run
+npm run start -- -p 3001
 ```
 
-Open [http://localhost:3001](http://localhost:3001) with your browser to see the result.
+Access [http://localhost:3001/cards](http://localhost:3001/cards) with your browser to load initial screen.
 
 ## Missing
 

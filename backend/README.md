@@ -6,7 +6,17 @@
 
 RESTful API developed with [Nest](https://github.com/nestjs/nest) framework in Typescript for [CookUnity](https://www.cookunity.com/) Engineer Coding Challenge.
 
-## Manual Installation
+## Build & run with Docker (and your are ready to go!)
+
+First step is to rename ".env.example" file to ".env" and set the DB variables in order to being able to connect to the PostgreSQL DB.
+
+**The values already set are ready for connecting to the DB instance when built and run using Docker.**
+
+```bash
+docker-compose up --build
+```
+
+## Alternative Manual Installation
 
 ```bash
 $ npm install
@@ -23,12 +33,6 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
-```
-
-## Or build & run with Docker
-
-```bash
-docker-compose up --build
 ```
 
 ## Missing
@@ -62,7 +66,7 @@ Wed Jun 05 19:31:06 UTC 2024 : Method completed with status: 502
 
 API has been documented using [Swagger](https://swagger.io/).
 
-[WIP] Access deployed version at [???](http://...) 
+[WIP] Access deployed version at [???](http://...)
 
 Or if running locally: [http://localhost:3000/api](http://localhost:3000/api)
 
