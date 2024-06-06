@@ -24,7 +24,7 @@ export class CardsService {
           ...(name && {
             name: { equals: `${name}%`, mode: 'insensitive' },
           }),
-          ...(type && { type }),
+          ...(type && { pokemonType: type }),
         },
       }),
       this.prisma.card.findMany({
