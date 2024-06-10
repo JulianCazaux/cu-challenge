@@ -7,42 +7,31 @@ import {
 } from '@nestjs/class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { $Enums } from '@prisma/client';
+import { Type } from 'class-transformer';
+import { IsNotEmpty } from 'class-validator';
 
 export class PaginateFilterCardsDto {
   @IsOptional()
   @IsNumber()
+  @Type(() => Number)
   @Min(0)
-  @ApiProperty({
-    required: false,
-    type: 'number',
-    minimum: 0,
-    default: 0,
-  })
   offset?: number;
 
   @IsOptional()
+  @Type(() => Number)
   @IsNumber()
   @Min(1)
-  @ApiProperty({
-    required: false,
-    type: 'number',
-    minimum: 1,
-    default: 10,
-  })
   limit?: number;
 
   @IsOptional()
+  @IsNotEmpty()
   @IsString()
-  @ApiProperty({
-    required: false,
-    type: 'string',
-  })
   name?: string;
 
   @IsOptional()
-  @IsEnum($Enums.TypeEnum)
+  @IsEnum($Enums.TypeEnum) // TODO: customize validation message
   @ApiProperty({
-    required: false,
+    description: 'Pokemon Type',
     enum: $Enums.TypeEnum,
   })
   type?: $Enums.TypeEnum;

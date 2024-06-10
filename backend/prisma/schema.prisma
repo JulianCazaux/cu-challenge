@@ -50,11 +50,10 @@ model Card {
   name            String
   pokemonType     TypeEnum
   evolutionType   EvolutionEnum
+  hitPoints       Int
 
   /// [AttackType]
-  attack         Json
-
-  hitPoints       Int
+  attack         Json 
   
   /// [WeaknessType]
   weakness        Json
