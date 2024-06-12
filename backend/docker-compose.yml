@@ -11,19 +11,19 @@ services:
     ports:
       - '5432:5432'
 
-  # app:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   container_name: cookunity-nest-docker
-  #   environment:
-  #     - DATABASE_URL=${DATABASE_URL}
-  #   ports:
-  #     - '3000:3000'
-  #   depends_on:
-  #     - postgres
-  #   volumes:
-  #     - ./src:/app/src
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cookunity-nest-docker
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+    ports:
+      - '3000:3000'
+    depends_on:
+      - postgres
+    volumes:
+      - ./src:/app/src
 
 volumes:
   postgres:
