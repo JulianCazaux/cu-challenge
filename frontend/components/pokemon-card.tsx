@@ -15,7 +15,11 @@ import Link from 'next/link';
 
 export default function PokemonCard({ card }: { card: CardType }) {
   return (
-    <Card key={card.id} className="self-stretch w-[400px]">
+    <Card
+      key={card.id}
+      className="self-stretch w-[400px]"
+      data-testid={`card-${card.id}`}
+    >
       <CardHeader>
         <CardTitle className="flex justify-between content-center">
           <span className="text-3xl">{card.name}</span>
