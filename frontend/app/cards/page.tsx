@@ -21,7 +21,7 @@ export default async function Cards({
     <main className="min-h-screen px-24 py-3">
       <h1 className="text-5xl font-bold">Pokemon App</h1>
       <PokemonFilter />
-      <Suspense key={nameQuery + typeQuery}>
+      <Suspense key={nameQuery + typeQuery} fallback={<h1>Loading...</h1>}>
         <PokemonGrid
           nameQuery={nameQuery}
           typeQuery={typeQuery}
